@@ -1,4 +1,4 @@
- I just wanted to eat my toast in peace... that was too much to ask 
+ I just wanted to eat my toast in peace... that was obviously too much to ask!
 
 
 # HoneyType:
