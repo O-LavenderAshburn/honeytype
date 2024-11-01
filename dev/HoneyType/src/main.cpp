@@ -27,6 +27,7 @@ std::vector<Token> tokenize(const std::string &str) {
             if (buf == "return") {
                 tokens.push_back({.type = TokenType::_return});
             } else {
+                std::cerr << "Whats on your toast" << std::endl;
             }
         }
     }
