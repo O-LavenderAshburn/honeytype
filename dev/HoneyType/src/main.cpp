@@ -10,6 +10,7 @@ struct Token {
 };
 
 std::vector<Token> tokenize(const std::string &str) {
+    // Create tokens based on contents
     std::vector<Token> tokens{};
     std::string buf = "";
 
@@ -60,11 +61,14 @@ std::vector<Token> tokenize(const std::string &str) {
 
 std::string tokens_to_asm(const std::vector<Token> &tokens) {
     std::stringstream output;
-    output << "global _start\nstart\n";
+    output << "global _start:\nstart:s\n";
+
+    // For each of the tokens check if it is a return
+    // token with int_lit and semi following.
 
     for (int i = 0; i < tokens.size(); i++) {
         const Token &token = tokens.at(i);
-        
+
         if (token.type == TokenType::_return) {
             if (i + 1 < tokens.size() &&
                 tokens.at(i + 1).type == TokenType::int_lit) {
@@ -87,10 +91,18 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
     std::stringstream contents_stream;
-
+    std::string contents;
     {
         std::fstream input(argv[1], std::ios::in);
         contents_stream << input.rdbuf();
+        contents = contents_stream.str();
+    }
+    // Tokenize contents
+    std::vector<Token> tokens = tokenize(contents);
+
+    {
+        std::fstream file("../out.asm", std::ios::out);
+        file << tokens_to_asm(tokens);
     }
 
     return EXIT_SUCCESS;
