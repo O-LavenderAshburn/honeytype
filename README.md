@@ -1,8 +1,8 @@
  I just wanted to eat my toast in peace...
 
 
-# HoneyType:
+# HoneyType Compiler:
 
-**Honeytype** is an attempt to make a programming language compiler.
+**Honeytype** Compiler is a compiler for the HoneyType programming language (syntax coming soon).
 
-I don't entirely know what I am doing but we will get there.
+Let this readme state that I don't entirely know what I am doing.
