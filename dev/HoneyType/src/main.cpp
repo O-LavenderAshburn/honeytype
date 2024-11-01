@@ -12,7 +12,7 @@ struct Token {
 std::vector<Token> tokenize(const std::string &str) {
     // Create tokens based on contents
     std::vector<Token> tokens{};
-    std::string buf = "";
+    std::string buf;
 
     for (int i = 0; i < str.length(); i++) {
         char c = str.at(i);
@@ -37,7 +37,7 @@ std::vector<Token> tokenize(const std::string &str) {
             buf.push_back(c);
             i++;
             while (std::isdigit(str.at(i))) {
-                /* code */
+
                 buf.push_back(str.at(i));
                 i++;
             }
@@ -61,15 +61,16 @@ std::vector<Token> tokenize(const std::string &str) {
 
 std::string tokens_to_asm(const std::vector<Token> &tokens) {
     std::stringstream output;
-    output << "global _start:\nstart:s\n";
+    output << "global _start:\nstart:\n";
 
     // For each of the tokens check if it is a return
     // token with int_lit and semi following.
 
     for (int i = 0; i < tokens.size(); i++) {
-        const Token &token = tokens.at(i);
+        const Token& token = tokens.at(i);
 
         if (token.type == TokenType::_return) {
+
             if (i + 1 < tokens.size() &&
                 tokens.at(i + 1).type == TokenType::int_lit) {
                 if (i + 2 < tokens.size() &&
@@ -82,6 +83,7 @@ std::string tokens_to_asm(const std::vector<Token> &tokens) {
             }
         }
     }
+    return output.str();
 }
 
 int main(int argc, char *argv[]) {
@@ -90,6 +92,7 @@ int main(int argc, char *argv[]) {
         std::cout << "usage: <script.honey> " << std::endl;
         return EXIT_FAILURE;
     }
+
     std::stringstream contents_stream;
     std::string contents;
     {
@@ -97,6 +100,7 @@ int main(int argc, char *argv[]) {
         contents_stream << input.rdbuf();
         contents = contents_stream.str();
     }
+
     // Tokenize contents
     std::vector<Token> tokens = tokenize(contents);
 
@@ -104,6 +108,10 @@ int main(int argc, char *argv[]) {
         std::fstream file("../out.asm", std::ios::out);
         file << tokens_to_asm(tokens);
     }
+
+    std::cout << tokens_to_asm(tokens) << std::endl;
+
+
 
     return EXIT_SUCCESS;
 }
