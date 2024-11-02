@@ -5,4 +5,9 @@
 
 **Honeytype** Compiler is a compiler for the HoneyType programming language (syntax coming soon).
 
-Let this readme state that I don't entirely know what I am doing.
+Progress:
+
+Compiler can compile a return statement.
+
+Coming Soon:
+Parsing
