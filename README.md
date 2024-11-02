@@ -7,7 +7,7 @@
 
 Progress:
 
-Compiler can compile a return statement.
+Compiler can compile a return statement into assembly.
 
 Coming Soon:
 Parsing
