@@ -11,11 +11,15 @@ struct Token {
 
 class Tokenizer {
 public:
+
+
+
     inline explicit  Tokenizer(std::string src):
         m_src(std::move(src)) {
     }
 
-    inline std::vector<Token> tokenize() {
+
+    inline std::vector<Token> tokenize(){
         // Create tokens based on contents
         std::vector<Token> tokens{};
         std::string buf;
@@ -83,9 +87,9 @@ private:
         if (m_index + ahead > m_src.length()) {
             return {};
         }
-        else {
-            return m_src.at(m_index);
-        }
+        
+        return m_src.at(m_index);
+
     }
 
     /**
