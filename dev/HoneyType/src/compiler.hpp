@@ -7,7 +7,8 @@
 
 class Compiler {
 public:
-    inline explicit  Compiler();
+    inline explicit  Compiler(){};
+
 
     inline std::string compile(std::vector<Token> &tokens) {
 
